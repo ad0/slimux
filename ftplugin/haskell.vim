@@ -51,7 +51,9 @@ function! SlimuxEscape_haskell(text)
 	let l:lines = split(l:text, "\n")
 	let l:lines = StripComments(l:lines)
 	let l:lines = ProcessLines(l:lines)
-	let l:lines = [":{"] + l:lines + [":}"]
+  if len(l:lines) > 1
+    let l:lines = [":{"] + l:lines + [":}"]
+  endif
 
 	return join(l:lines, "\n") . "\n"
 endfunction
